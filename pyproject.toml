@@ -1,0 +1,52 @@
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = [
+    "--cov=banking_api",
+    "--cov-report=html",
+    "--cov-report=term-missing",
+    "--cov-fail-under=85",
+    "-v"
+]
+
+[tool.mypy]
+python_version = "3.12"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+check_untyped_defs = true
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_no_return = true
+strict_equality = true
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = [
+    "pandas.*",
+    "pydantic.*",
+    "pydantic_settings.*",
+]
+ignore_missing_imports = true
+
+[tool.flake8]
+max-line-length = 100
+exclude = [
+    ".git",
+    "__pycache__",
+    ".venv",
+    "venv",
+    "build",
+    "dist",
+    "*.egg-info"
+]
+ignore = [
+    "E203",  # whitespace before ':'
+    "E501",  # line too long (handled by max-line-length)
+    "W503",  # line break before binary operator
+]
+
